@@ -1,21 +1,42 @@
-from car.calliope_car import CalliopeCar
-from car.glissade_car import GlissadeCar
-from car.palindrome_car import PalindromeCar
-from car.rorschach_car import RorschachCar
-from car.thovex_car import ThovexCar
+from battery.nubbin_battery import NubbinBattery
+from battery.spindler_battery import SpindlerBattery
+from car import Car
+from engine.capulet_engine import CapuletEngine
+from engine.sternman_engine import SternmanEngine
+from engine.willoughby_engine import WilloughbyEngine
 
 class CarFactory:
-    car_types = {
-        'calliope': CalliopeCar,
-        'glissade': GlissadeCar,
-        'palindrome': PalindromeCar,
-        'rorschach': RorschachCar,
-        'thovex': ThovexCar
-    }
+    @staticmethod
+    def create_calliope(current_date, last_service_date, current_mileage, last_service_mileage):
+        engine = CapuletEngine(current_mileage, last_service_mileage)
+        battery = SpindlerBattery(last_service_date, current_date)
+        car = Car(engine, battery)
+        return car
 
-    def create_car(self, car_type, *args, **kwargs):
-        if car_type in self.car_types:
-            car_class = self.car_types[car_type]
-            return car_class(*args, **kwargs)
-        else:
-            raise ValueError(f"Unsupported car type: {car_type}")
+    @staticmethod
+    def create_glissade(current_date, last_service_date, current_mileage, last_service_mileage):
+        engine = WilloughbyEngine(current_mileage, last_service_mileage)
+        battery = SpindlerBattery(last_service_date, current_date)
+        car = Car(engine, battery)
+        return car
+
+    @staticmethod
+    def create_palindrome(current_date, last_service_date,warning_light_is_on):
+        engine = SternmanEngine(warning_light_is_on)
+        battery = SpindlerBattery(current_date, last_service_date)
+        car = Car(engine, battery)
+        return car
+
+    @staticmethod
+    def create_rorshach(current_date, last_service_date, current_mileage, last_service_mileage):
+        engine = WilloughbyEngine(current_mileage, last_service_mileage)
+        battery = NubbinBattery(current_date, last_service_date)
+        car = Car(engine, battery)
+        return car
+
+    @staticmethod
+    def create_thovex(current_date, last_service_date, current_mileage, last_service_mileage):
+        engine = CapuletEngine(current_mileage, last_service_mileage)
+        battery = NubbinBattery(current_date, last_service_date)
+        car = Car(engine, battery)
+        return car
