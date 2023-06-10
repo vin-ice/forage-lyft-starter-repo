@@ -3,11 +3,10 @@ from engine.engine import Engine
 
 class CapuletEngine(Engine):
     """
-    Engine class: Servicable every 30000 miles
+    Engine class: Servicable every 30k miles
     """
- 
+
     def __init__(self, current_mileage, last_service_mileage):
-        super().__init__(self, current_mileage, last_service_mileage)
         self.current_mileage = current_mileage
         self.last_service_mileage = last_service_mileage
 
