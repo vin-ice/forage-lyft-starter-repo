@@ -1,5 +1,6 @@
 """Test module for the unit: Engine"""
 from engine.capulet_engine import CapuletEngine
+from engine.engine import Engine
 from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine 
 from unittest.case import TestCase
@@ -13,6 +14,7 @@ class TestCapuletEngine(TestCase):
         last_service_mileage = 0
 
         engine = CapuletEngine(current_mileage, last_service_mileage)
+        self.assertIsInstance(engine, Engine)
         self.assertTrue(engine.needs_service())
 
     def test_capulet_should_not_be_serviced(self):
@@ -20,6 +22,7 @@ class TestCapuletEngine(TestCase):
         last_service_mileage = 0
 
         engine = CapuletEngine(current_mileage, last_service_mileage)
+        self.assertIsInstance(engine, Engine)
         self.assertFalse(engine.needs_service())
 
 
@@ -36,6 +39,7 @@ class TestSternmanEngine(TestCase):
         warning_light_is_on = False
 
         engine = SternmanEngine(warning_light_is_on)
+        self.assertIsInstance(engine, Engine)
         self.assertFalse(engine.needs_service())
 
 
@@ -53,4 +57,5 @@ class TestWilloughbyEngine(TestCase):
         last_service_mileage = 0
 
         engine = WilloughbyEngine(current_mileage, last_service_mileage)
+        self.assertIsInstance(engine, Engine)
         self.assertFalse(engine.needs_service())
